@@ -1,19 +1,5 @@
 // Add some interactive elements
 document.addEventListener("DOMContentLoaded", function () {
-	// Add typing effect to the title
-	const title = document.querySelector("h1");
-	const titleText = title.textContent;
-	title.textContent = "";
-	let i = 0;
-	function typeWriter() {
-		if (i < titleText.length) {
-			title.textContent += titleText.charAt(i);
-			i++;
-			setTimeout(typeWriter, 100);
-		}
-	}
-	setTimeout(typeWriter, 500);
-
 	// Add hover effects to project cards
 	const projectCards = document.querySelectorAll(".project-card");
 	projectCards.forEach((card) => {

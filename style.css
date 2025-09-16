@@ -61,6 +61,7 @@ body {
 .content-area {
 	position: relative;
 }
+
 h1 {
 	color: #569cd6;
 	font-size: 2.5rem;
@@ -424,4 +425,26 @@ p {
 }
 .section {
 	animation: fadeInUp 0.6s ease-out;
+}
+
+.gradient-text {
+	background: linear-gradient(270deg, #ff79c6, #569cd6, #4ec9b0, #ff79c6);
+	background-size: 800% 800%;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: gradientMove 8s ease infinite;
+	font-weight: 700;
+}
+
+@keyframes gradientMove {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
