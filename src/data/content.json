@@ -1,0 +1,204 @@
+{
+	"settings": {
+		"name": "Shiv Bhagat",
+		"meta_title": "Shiv's Portfolio",
+		"meta_description": "Welcome to my creative portfolio showcasing my work and projects",
+		"nav_links": [
+			{ "label": "Home", "link": "/" },
+			{ "label": "About", "link": "/about" },
+			{ "label": "Projects", "link": "/projects" }
+		],
+		"cta_button": {
+			"label": "Contact",
+			"link": "mailto:shivbhagat@icloud.com"
+		},
+		"social_links": [
+			{ "platform": "github", "link": "https://github.com/shivxbhagat" },
+			{
+				"platform": "linkedin",
+				"link": "https://linkedin.com/in/shivbhagat"
+			}
+		]
+	},
+	"homepage": {
+		"meta_title": "Home",
+		"meta_description": "Welcome to my hero section of the portfolio",
+		"slices": [
+			{
+				"id": "hero-1",
+				"slice_type": "hero",
+				"primary": {
+					"first_name": "Shiv",
+					"last_name": "Bhagat",
+					"tag_line": "Software Developer"
+				}
+			}
+		]
+	},
+	"pages": [
+		{
+			"uid": "about",
+			"meta_title": "About - Shiv's Portfolio",
+			"meta_description": "Learn more about me and my background",
+			"slices": [
+				{
+					"id": "biography-1",
+					"slice_type": "biography",
+					"primary": {
+						"heading": "About Me",
+						"body": [
+							{
+								"type": "paragraph",
+								"text": "Hello! I'm a passionate software developer with experience in creating beautiful and functional applications. I specialize in modern web technologies and love bringing ideas to life through code. I am a great problem solver and enjoy working on challenging projects that allow me to grow and learn new skills."
+							},
+							{
+								"type": "paragraph",
+								"text": "When I'm not coding, you can find me exploring new technologies, contributing to open source, or working on personal projects."
+							}
+						],
+						"button_text": "Resume",
+						"button_link": "/pdf/Shiv_Bhagat_resume.pdf",
+						"avatar": "/img/shiv.jpeg"
+					}
+				},
+				{
+					"id": "tech_list-1",
+					"slice_type": "tech_list",
+					"primary": {
+						"heading": "Tech Stack"
+					},
+					"items": [
+						{ "tech_name": "Java", "tech_color": "#E7903F" },
+						{ "tech_name": "C#", "tech_color": "#a07fd8" },
+						{ "tech_name": "Python", "tech_color": "#f8d562" },
+						{ "tech_name": "React", "tech_color": "#61DAFB" },
+						{ "tech_name": "TypeScript", "tech_color": "#3178C6" },
+						{ "tech_name": "Node.js", "tech_color": "#339933" }
+					]
+				},
+				{
+					"id": "education-1",
+					"slice_type": "experience",
+					"primary": {
+						"heading": "Education"
+					},
+					"items": [
+						{
+							"title": "Bachelor of Computer Science (Honours)",
+							"time_period": "2021 - 2025",
+							"institution": "University of Manitoba",
+							"logo": "/img/um-logo.jpg",
+							"description": [
+								{
+									"type": "paragraph",
+									"text": "Focused on software engineering, algorithms, distribued system, databases, and operating systems. Graduated on Feb 4, 2026 with Honours."
+								}
+							]
+						}
+					]
+				},
+				{
+					"id": "experience-1",
+					"slice_type": "experience",
+					"primary": {
+						"heading": "Experience"
+					},
+					"items": [
+						{
+							"title": "Junior Application Developer",
+							"time_period": "05/2025 - 02/2026",
+							"institution": "Government of Manitoba",
+							"logo": "/img/mb-logo.png",
+							"description": [
+								{
+									"type": "paragraph",
+									"text": ""
+								}
+							]
+						},
+						{
+							"title": "Junior Programmer Analyst",
+							"time_period": "05/2023 - 01/2026",
+							"institution": "University of Manitoba",
+							"logo": "/img/um-logo.jpg",
+							"description": [
+								{
+									"type": "paragraph",
+									"text": ""
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"uid": "projects",
+			"meta_title": "Projects - Shiv's Portfolio",
+			"meta_description": "Check out my latest projects",
+			"slices": [
+				{
+					"id": "content_index-1",
+					"slice_type": "content_index",
+					"primary": {
+						"heading": "My Projects",
+						"content_type": "Projects",
+						"description": [
+							{
+								"type": "paragraph",
+								"text": "Here are some of the projects I've worked on recently."
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"projects": [
+		{
+			"uid": "studly",
+			"title": "Studly",
+			"external_url": "https://github.com/HaMeD1379/Studly",
+			"tech_stack": [
+				"React",
+				"Node.js",
+				"Express.js",
+				"Supabase",
+				"PostgreSQL",
+				"Docker",
+				"Github Actions"
+			]
+		},
+
+		{
+			"uid": "red-radar",
+			"title": "RedRadar",
+			"external_url": "https://github.com/shivxbhagat/redradar",
+			"tech_stack": ["Python", "Github Actions", "Discord Webhooks"]
+		},
+		{
+			"uid": "unix-shell",
+			"title": "Linux Command Line Shell",
+			"external_url": "https://github.com/shivxbhagat/unix-custom-shell",
+			"tech_stack": ["C", "Unix shell"]
+		},
+		{
+			"uid": "smile",
+			"title": "Smile",
+			"external_url": "https://shivxbhagat.github.io/a01-g06-syndicate6/",
+			"tech_stack": ["Java", "XML", "HSQLDB", "Android Studio"]
+		},
+		{
+			"uid": "scheduler",
+			"title": "Custom User-Level Threading Library & Scheduler",
+			"external_url": "https://github.com/shivxbhagat/scheduler",
+			"tech_stack": ["C", "scheduler"]
+		},
+		{
+			"uid": "blockchain-peer-miner",
+			"title": "Distributed Blockchain Peer & Miner",
+			"external_url": "https://github.com/shivxbhagat/blockchain-peer-miner",
+			"tech_stack": ["Python", "Event Driven Object-Oriented Development"]
+		}
+	]
+}
