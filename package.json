@@ -10,9 +10,6 @@
 		"set-up-content": "npx tsx@latest ./set-up-content.ts"
 	},
 	"dependencies": {
-		"@prismicio/client": "^7.21.6",
-		"@prismicio/next": "^2.2.1",
-		"@prismicio/react": "^3.3.0",
 		"@react-three/drei": "^10.7.7",
 		"@react-three/fiber": "^9.5.0",
 		"@types/three": "^0.182.0",
