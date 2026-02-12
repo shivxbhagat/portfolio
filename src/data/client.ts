@@ -59,13 +59,9 @@ export function getByUID(
 			uid: project.uid,
 			data: {
 				title: project.title,
-				meta_description: project.meta_description,
-				body: project.body,
-				hover_image: project.hover_image,
 				tech_stack: project.tech_stack,
 				external_url: project.external_url,
 			},
-			last_publication_date: project.last_publication_date,
 		};
 	}
 
@@ -87,13 +83,9 @@ export function getAllByType(type: "project"): Array<{
 	uid?: string;
 	data: {
 		title: string;
-		meta_description: string;
-		body: any[];
-		hover_image?: string;
 		tech_stack?: string[];
 		external_url?: string;
 	};
-	last_publication_date?: string;
 }>;
 export function getAllByType(type: "page" | "project"): DataItem[] {
 	if (type === "page") {
@@ -112,13 +104,9 @@ export function getAllByType(type: "page" | "project"): DataItem[] {
 			uid: project.uid,
 			data: {
 				title: project.title,
-				meta_description: project.meta_description,
-				body: project.body,
-				hover_image: project.hover_image,
 				tech_stack: project.tech_stack,
 				external_url: project.external_url,
 			},
-			last_publication_date: project.last_publication_date,
 		}));
 	}
 

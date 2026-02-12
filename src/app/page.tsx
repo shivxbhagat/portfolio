@@ -1,22 +1,21 @@
 import { Metadata } from "next";
-import { SliceZone } from "@prismicio/react";
-
+import { SliceZone } from "@/components/SliceZone";
 import { createClient } from "@/data/client";
 import { components } from "@/slices";
 
 export default async function Page() {
-  const client = createClient();
-  const page = client.getSingle("homepage");
+	const client = createClient();
+	const page = client.getSingle("homepage");
 
-  return <SliceZone slices={page.data.slices} components={components} />;
+	return <SliceZone slices={page.data.slices} components={components} />;
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const client = createClient();
-  const page = client.getSingle("homepage");
+	const client = createClient();
+	const page = client.getSingle("homepage");
 
-  return {
-    title: page.data.meta_title,
-    description: page.data.meta_description,
-  };
+	return {
+		title: page.data.meta_title,
+		description: page.data.meta_description,
+	};
 }
