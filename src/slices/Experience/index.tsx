@@ -104,9 +104,11 @@ const Experience = ({ slice }: { slice: ExperienceSlice }): JSX.Element => {
 							{item.title}
 						</Heading>
 
-						<div className="mt-1 flex w-fit items-center gap-1 text-2xl font-semibold tracking-tight text-slate-400">
+						<div className="mt-1 flex w-full flex-col items-start gap-1 text-xl font-semibold tracking-tight text-slate-400 md:w-fit md:flex-row md:items-center md:text-2xl">
 							<span>{item.time_period}</span>{" "}
-							<span className="text-3xl font-extralight">/</span>{" "}
+							<span className="hidden text-3xl font-extralight md:inline">
+								/
+							</span>{" "}
 							<span>{item.institution}</span>
 						</div>
 						<div className="prose prose-lg prose-invert mt-4">

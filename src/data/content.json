@@ -4,9 +4,9 @@
 		"meta_title": "Shiv's Portfolio",
 		"meta_description": "Welcome to my creative portfolio showcasing my work and projects",
 		"nav_links": [
-			{ "label": "Home", "link": "/" },
-			{ "label": "About", "link": "/about" },
-			{ "label": "Projects", "link": "/projects" }
+			{ "label": "Home", "link": "#home" },
+			{ "label": "About", "link": "#about" },
+			{ "label": "Projects", "link": "#projects" }
 		],
 		"cta_button": {
 			"label": "Contact",
@@ -17,6 +17,10 @@
 			{
 				"platform": "linkedin",
 				"link": "https://linkedin.com/in/shivbhagat"
+			},
+			{
+				"platform": "email",
+				"link": "mailto:shivbhagat@icloud.com"
 			}
 		]
 	},

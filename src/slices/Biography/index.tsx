@@ -24,11 +24,16 @@ const Biography = ({ slice }: { slice: BiographySlice }): JSX.Element => {
 			data-slice-variation="default"
 		>
 			<div className="grid gap-x-8 gap-y-6 md:grid-cols-[2fr,1fr]">
-				<Heading size="xl" className="col-start-1">
+				<Heading size="xl" className="col-start-1 order-1">
 					{slice.primary.heading}
 				</Heading>
 
-				<div className="prose prose-xl prose-slate prose-invert col-start-1">
+				<Avatar
+					image={slice.primary.avatar}
+					className="max-w-xs order-2 md:order-none md:col-start-2 md:row-start-1 md:row-end-3"
+				/>
+
+				<div className="prose prose-xl prose-slate prose-invert col-start-1 order-3 md:order-none">
 					{slice.primary.body.map((para, index) => (
 						<p key={index}>{para.text}</p>
 					))}
@@ -37,11 +42,7 @@ const Biography = ({ slice }: { slice: BiographySlice }): JSX.Element => {
 					linkField={slice.primary.button_link}
 					label={slice.primary.button_text}
 					target="_blank"
-				/>
-
-				<Avatar
-					image={slice.primary.avatar}
-					className="row-start-1 max-w-xs md:col-start-2 md:row-end-3"
+					className="order-4 md:order-none"
 				/>
 			</div>
 		</Bounded>

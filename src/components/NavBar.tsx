@@ -1,10 +1,9 @@
 "use client";
 
 import clsx from "clsx";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { MdMenu, MdClose } from "react-icons/md";
-import { usePathname } from "next/navigation";
 import Button from "@/components/Button";
 
 interface Settings {
@@ -17,7 +16,54 @@ interface Settings {
 
 export default function NavBar({ settings }: { settings: Settings }) {
 	const [open, setOpen] = useState(false);
-	const pathname = usePathname();
+	const [activeSection, setActiveSection] = useState("home");
+
+	useEffect(() => {
+		// Intersection Observer for active section tracking with less aggressive settings
+		const observerOptions = {
+			root: null,
+			rootMargin: "-20% 0px -60% 0px",
+			threshold: [0, 0.1, 0.5],
+		};
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting && entry.intersectionRatio > 0) {
+					setActiveSection(entry.target.id);
+				}
+			});
+		}, observerOptions);
+
+		// Observe all sections
+		const sections = document.querySelectorAll("section[id]");
+		sections.forEach((section) => observer.observe(section));
+
+		return () => {
+			sections.forEach((section) => observer.unobserve(section));
+		};
+	}, []);
+
+	const handleNavClick = (
+		e: React.MouseEvent<HTMLAnchorElement>,
+		link: string,
+	) => {
+		if (link.startsWith("#")) {
+			e.preventDefault();
+			const sectionId = link.substring(1);
+			const element = document.getElementById(sectionId);
+			if (element) {
+				element.scrollIntoView({ behavior: "smooth" });
+				setOpen(false);
+			}
+		}
+	};
+
+	const isActive = (link: string) => {
+		if (link.startsWith("#")) {
+			return "#" + activeSection === link;
+		}
+		return false;
+	};
 
 	return (
 		<nav aria-label="Main navigation">
@@ -50,26 +96,26 @@ export default function NavBar({ settings }: { settings: Settings }) {
 					{settings.data.nav_links.map(({ link, label }, index) => (
 						<React.Fragment key={label}>
 							<li className="first:mt-8">
-								<Link
+								<a
 									className={clsx(
 										"group relative block overflow-hidden rounded px-3 text-3xl font-bold text-slate-900 ",
 									)}
 									href={link}
-									onClick={() => setOpen(false)}
+									onClick={(e) => handleNavClick(e, link)}
 									aria-current={
-										pathname === link ? "page" : undefined
+										isActive(link) ? "page" : undefined
 									}
 								>
 									<span
 										className={clsx(
 											"absolute inset-0 z-0 h-full translate-y-12 rounded bg-yellow-300 transition-transform duration-300 ease-in-out group-hover:translate-y-0",
-											pathname === link
+											isActive(link)
 												? "translate-y-6"
 												: "translate-y-18",
 										)}
 									/>
 									<span className="relative">{label}</span>
-								</Link>
+								</a>
 							</li>
 							{index < settings.data.nav_links.length - 1 && (
 								<span
@@ -91,7 +137,12 @@ export default function NavBar({ settings }: { settings: Settings }) {
 						</li>
 					)}
 				</div>
-				<DesktopMenu settings={settings} pathname={pathname} />
+				<DesktopMenu
+					settings={settings}
+					activeSection={activeSection}
+					handleNavClick={handleNavClick}
+					isActive={isActive}
+				/>
 			</ul>
 		</nav>
 	);
@@ -111,35 +162,41 @@ function NameLogo({ name }: { name: string }) {
 
 function DesktopMenu({
 	settings,
-	pathname,
+	activeSection,
+	handleNavClick,
+	isActive,
 }: {
 	settings: Settings;
-	pathname: string;
+	activeSection: string;
+	handleNavClick: (
+		e: React.MouseEvent<HTMLAnchorElement>,
+		link: string,
+	) => void;
+	isActive: (link: string) => boolean;
 }) {
 	return (
 		<div className="relative z-50 hidden flex-row items-center gap-1 bg-transparent py-0 md:flex">
 			{settings.data.nav_links.map(({ link, label }, index) => (
 				<React.Fragment key={label}>
 					<li>
-						<Link
+						<a
 							className={clsx(
 								"group relative block overflow-hidden rounded px-3 py-1 text-base font-bold text-slate-900",
 							)}
 							href={link}
-							aria-current={
-								pathname === link ? "page" : undefined
-							}
+							onClick={(e) => handleNavClick(e, link)}
+							aria-current={isActive(link) ? "page" : undefined}
 						>
 							<span
 								className={clsx(
 									"absolute inset-0 z-0 h-full rounded bg-yellow-300 transition-transform  duration-300 ease-in-out group-hover:translate-y-0",
-									pathname === link
+									isActive(link)
 										? "translate-y-6"
 										: "translate-y-8",
 								)}
 							/>
 							<span className="relative">{label}</span>
-						</Link>
+						</a>
 					</li>
 					{index < settings.data.nav_links.length - 1 && (
 						<span

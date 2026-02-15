@@ -13,7 +13,7 @@ const urbanist = Urbanist({ subsets: ["latin"] });
 
 export async function generateMetadata(): Promise<Metadata> {
 	const client = createClient();
-	const settings = client.getSingle("settings");
+	const settings = await client.getSingle("settings");
 
 	return {
 		title: settings.data.meta_title,
@@ -21,19 +21,25 @@ export async function generateMetadata(): Promise<Metadata> {
 	};
 }
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	const client = createClient();
+	const settings = await client.getSingle("settings");
+
 	return (
-		<html lang="en" className="bg-slate-900">
-			<body className={clsx(urbanist.className, "relative min-h-screen")}>
+		<html lang="en" className="bg-slate-900" suppressHydrationWarning>
+			<body
+				className={clsx(urbanist.className, "relative min-h-screen")}
+				suppressHydrationWarning
+			>
 				<Header />
 				{children}
 				<div className="background-gradient absolute inset-0 -z-50 max-h-screen" />
 				<div className="pointer-events-none absolute inset-0 -z-40 h-full bg-[url('/noisetexture.jpg')] opacity-20 mix-blend-soft-light"></div>
-				<Footer />
+				<Footer settings={settings} />
 				<SpeedInsights />
 				<Analytics />
 			</body>
