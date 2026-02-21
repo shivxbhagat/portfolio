@@ -17,21 +17,60 @@ interface Settings {
 export default function NavBar({ settings }: { settings: Settings }) {
 	const [open, setOpen] = useState(false);
 	const [activeSection, setActiveSection] = useState("home");
+	const [lastScrollY, setLastScrollY] = useState(0);
 
 	useEffect(() => {
-		// Intersection Observer for active section tracking with less aggressive settings
+		// Track scroll direction
+		const handleScroll = () => {
+			setLastScrollY(window.scrollY);
+		};
+
+		window.addEventListener("scroll", handleScroll, { passive: true });
+
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
+
+	useEffect(() => {
+		// Intersection Observer for active section tracking
 		const observerOptions = {
 			root: null,
 			rootMargin: "-20% 0px -60% 0px",
-			threshold: [0, 0.1, 0.5],
+			threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
 		};
 
+		let currentScrollY = window.scrollY;
+
 		const observer = new IntersectionObserver((entries) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting && entry.intersectionRatio > 0) {
-					setActiveSection(entry.target.id);
+			const newScrollY = window.scrollY;
+			const scrollingDown = newScrollY > currentScrollY;
+			currentScrollY = newScrollY;
+
+			// Filter intersecting entries
+			const intersectingEntries = entries.filter(
+				(entry) => entry.isIntersecting && entry.intersectionRatio > 0,
+			);
+
+			if (intersectingEntries.length > 0) {
+				// Sort by position
+				intersectingEntries.sort((a, b) => {
+					return (
+						a.target.getBoundingClientRect().top -
+						b.target.getBoundingClientRect().top
+					);
+				});
+
+				// Choose based on scroll direction
+				if (scrollingDown) {
+					// When scrolling down, pick the last (bottommost) intersecting section
+					setActiveSection(
+						intersectingEntries[intersectingEntries.length - 1]
+							.target.id,
+					);
+				} else {
+					// When scrolling up, pick the first (topmost) intersecting section
+					setActiveSection(intersectingEntries[0].target.id);
 				}
-			});
+			}
 		}, observerOptions);
 
 		// Observe all sections
